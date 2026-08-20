@@ -1,0 +1,35 @@
+#include<stdio.h>
+
+#pragma pack(1)
+struct node
+{
+    int Data;
+    struct node *next;
+
+};
+
+typedef struct node NODE;            //struct node la NODE ni replace kela
+typedef struct node*   PNODE ;      //PNODE=pointer node  (node * la PNODE convert)
+
+int main()
+{   PNODE head=NULL;            //head is not node..its pointer 
+    PNODE temp=NULL;
+    NODE obj1,obj2,obj3;        //here memory got allocated
+    head=&obj1;                 //now head is pointing to first node
+  
+    obj1.Data=11;
+    obj1.next=&obj2;
+    obj2.Data=21;
+    obj2.next=&obj3;
+    obj3.Data=51;
+    obj3.next=NULL;
+
+    temp=head;          //temp is copy of head created to use insted of head
+
+//here we can use .dot operator coz its pointer hence use ->to access
+   printf("%u\n",temp->Data);  //11
+   printf("%d\n",temp->next->Data); //21
+   printf("%d\n",temp->next->next->Data); //51
+  
+    return 0;
+}
